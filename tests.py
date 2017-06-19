@@ -23,11 +23,11 @@ def driver(request):
     return _driver
 
 
-def test_display_tickets(driver):
+def test_loading_and_displaying_tickets(driver):
     assert len(driver.find_elements_by_class_name('js-ticket')) > 0
 
 
-def test_ticket_drag_and_drop(driver):
+def test_drag_and_drop_ticket(driver):
     source_idx, target_idx = 0, 1
     columns = driver.find_elements_by_class_name('tickets-column')
     ticket = columns[0].find_element_by_class_name('js-ticket')
@@ -47,7 +47,7 @@ def test_ticket_drag_and_drop(driver):
                for _ticket in columns[target_idx].find_elements_by_class_name('js-ticket'))
 
 
-def test_ticket_edit(driver):
+def test_ticket_editing(driver):
     text = 'test'
     ticket_header = driver.find_element_by_class_name('panel-heading_text')
     ticket_text = ticket_header.text
@@ -57,7 +57,7 @@ def test_ticket_edit(driver):
     assert ticket_header.text == ticket_text + text
 
 
-def test_mark_ticket_as_solved(driver):
+def test_marking_ticket_as_solved(driver):
     ticket_status = driver.find_element_by_class_name('ticket_status')
     ticket_status.click()
     WebDriverWait(driver, 10).until(
@@ -69,7 +69,7 @@ def test_mark_ticket_as_solved(driver):
     assert ticket_status.text == 'closed'
 
 
-def test_create_new_ticket(driver):
+def test_creating_new_ticket(driver):
     text = 'creating new ticket'
     expected_tickets_count = len(driver.find_elements_by_class_name('js-ticket')) + 1
     btn_add_ticket = driver.find_element_by_class_name('add-ticket-block_button')
