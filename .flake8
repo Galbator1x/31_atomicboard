@@ -1,0 +1,9 @@
+[flake8]
+exclude = .git,__pycache__,docs/source/conf.py,old,build,dist,alembic/env.py,menu.py
+max-line-length = 90
+inline-quotes = '
+
+ignore = B001, H301, H306
+    # B001: Игнорировать builtins предупреждение “<some_builtin> is a python builtin and is being shadowed, consider renaming the variable”
+    # H301: One import per line
+    # H306: imports not in alphabetical order (time, os)
