@@ -1,51 +1,52 @@
+// source https://gist.github.com/rcorreia/2362544
 (function( $ ) {
-        $.fn.simulateDragDrop = function(options) {
-            return new $.simulateDragDrop(this[options.sourceIndex], options);
-        };
-        $.simulateDragDrop = function(elem, options) {
-                this.options = options;
-                this.simulateEvent(elem, options);
-        };
-        $.extend($.simulateDragDrop.prototype, {
-                simulateEvent: function(elem, options) {
-                        /*Simulating drag start*/
-                        var type = 'dragstart';
-                        var event = this.createEvent(type);
-                        this.dispatchEvent(elem, type, event);
+    $.fn.simulateDragDrop = function(options) {
+        return new $.simulateDragDrop(this[options.sourceIndex], options);
+    };
+    $.simulateDragDrop = function(elem, options) {
+        this.options = options;
+        this.simulateEvent(elem, options);
+    };
+    $.extend($.simulateDragDrop.prototype, {
+        simulateEvent: function(elem, options) {
+            /*Simulating drag start*/
+            var type = 'dragstart';
+            var event = this.createEvent(type);
+            this.dispatchEvent(elem, type, event);
 
-                        /*Simulating drop*/
-                        type = 'drop';
-                        var dropEvent = this.createEvent(type, {});
-                        dropEvent.dataTransfer = event.dataTransfer;
-                        this.dispatchEvent($(options.dropTarget)[options.targetIndex], type, dropEvent);
+            /*Simulating drop*/
+            type = 'drop';
+            var dropEvent = this.createEvent(type, {});
+            dropEvent.dataTransfer = event.dataTransfer;
+            this.dispatchEvent($(options.dropTarget)[options.targetIndex], type, dropEvent);
 
-                        /*Simulating drag end*/
-                        type = 'dragend';
-                        var dragEndEvent = this.createEvent(type, {});
-                        dragEndEvent.dataTransfer = event.dataTransfer;
-                        this.dispatchEvent(elem, type, dragEndEvent);
+            /*Simulating drag end*/
+            type = 'dragend';
+            var dragEndEvent = this.createEvent(type, {});
+            dragEndEvent.dataTransfer = event.dataTransfer;
+            this.dispatchEvent(elem, type, dragEndEvent);
+        },
+        createEvent: function(type) {
+            var event = document.createEvent("CustomEvent");
+            event.initCustomEvent(type, true, true, null);
+            event.dataTransfer = {
+                data: {
                 },
-                createEvent: function(type) {
-                        var event = document.createEvent("CustomEvent");
-                        event.initCustomEvent(type, true, true, null);
-                        event.dataTransfer = {
-                                data: {
-                                },
-                                setData: function(type, val){
-                                        this.data[type] = val;
-                                },
-                                getData: function(type){
-                                        return this.data[type];
-                                }
-                        };
-                        return event;
+                setData: function(type, val){
+                    this.data[type] = val;
                 },
-                dispatchEvent: function(elem, type, event) {
-                        if(elem.dispatchEvent) {
-                                elem.dispatchEvent(event);
-                        }else if( elem.fireEvent ) {
-                                elem.fireEvent("on"+type, event);
-                        }
+                getData: function(type){
+                    return this.data[type];
                 }
-        });
+            };
+            return event;
+        },
+        dispatchEvent: function(elem, type, event) {
+            if(elem.dispatchEvent) {
+                elem.dispatchEvent(event);
+            }else if( elem.fireEvent ) {
+                elem.fireEvent("on"+type, event);
+            }
+        }
+    });
 })(jQuery);
