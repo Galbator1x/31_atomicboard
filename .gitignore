@@ -28,3 +28,4 @@ migrations/
 
 ghostdriver.log
 geckodriver.log
+/node_modules

@@ -1,0 +1,19 @@
+{
+  "name": "31_atomicboard",
+  "version": "1.0.0",
+  "description": "The aim of this project is to cover by integration tests the web service AtomicBoard. The stage server is available by address [atomicboard.devman.org](http://atomicboard.devman.org).",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Galbator1x/31_atomicboard.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Galbator1x/31_atomicboard/issues"
+  },
+  "homepage": "https://github.com/Galbator1x/31_atomicboard#readme",
+  "dependencies": {
+    "phantomjs-prebuilt": "^2.1.14"
+  }
+}
