@@ -12,7 +12,19 @@ Tests cover the main scenarios of using the service:
 - Marking the ticket as solved
 - Creating a new ticket
 
+## Installation
 
-# Project Goals
+```
+$ pip install -r requirements.txt
+$ npm install
+```
+
+## Running the tests
+
+```
+$ pytest
+```
+
+## Project Goals
 
 The code is written for educational purposes. Training course for web-developers - [DEVMAN.org](https://devman.org)
