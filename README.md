@@ -15,6 +15,8 @@ Tests cover the main scenarios of using the service:
 ## Installation
 
 ```
+$ git clone {{the link to this repository}} {{project name}}
+$ cd {{project name}}
 $ pip install -r requirements.txt
 $ npm install
 ```
@@ -24,6 +26,10 @@ $ npm install
 ```
 $ pytest
 ```
+
+## Requirements
+
+- Python >= 3.5
 
 ## Project Goals
 
